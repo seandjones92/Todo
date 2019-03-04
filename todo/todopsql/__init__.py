@@ -16,7 +16,7 @@ class connection(object):
         conn = psycopg2.connect(self.connstring)
         cur = conn.cursor()
         cur.execute("SELECT * FROM todo;")
-        mostrecent = cur.fetchone()
+        mostrecent = cur.fetchall()
         cur.close()
         conn.close()
         return mostrecent
