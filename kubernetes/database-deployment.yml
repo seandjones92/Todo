@@ -1,0 +1,22 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: todopsql
+spec:
+  selector:
+    matchLabels:
+      app: todopsql
+  template:
+    metadata:
+      labels:
+        app: todopsql
+    spec:
+      containers:
+      - name: todopsql
+        image: sdj92/todopsql:latest
+        resources:
+          limits:
+            memory: "128Mi"
+            cpu: "500m"
+        ports:
+        - containerPort: 5432
