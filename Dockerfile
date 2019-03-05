@@ -6,7 +6,7 @@ EXPOSE 3000
 WORKDIR /app
 ADD . /app
 
-RUN apk add gcc musl-dev
+RUN apk add gcc musl-dev postgresql-dev
 RUN python3 -m pip install pipenv
 RUN pipenv install --ignore-pipfile
 
