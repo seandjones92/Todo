@@ -37,7 +37,8 @@ spec:
     spec:
       containers:
       - name: todopsql
-        image: sdj92/todopsql:latest
+        image: todopsql:1.0
+        imagePullPolicy: Never
         resources:
           limits:
             memory: "128Mi"
