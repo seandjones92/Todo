@@ -31,7 +31,8 @@ class connection(object):
         conn = psycopg2.connect(self.connstring)
         cur = conn.cursor()
         # Interact with DB
-        
+        cur.execute("INSERT INTO todo (title, body, createdon, duedate) \
+                     VALUES (%s, %s, current_date, ")
         # Close cursor and connection
         cur.close()
         conn.close()
