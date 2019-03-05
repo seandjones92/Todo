@@ -3,6 +3,7 @@ kind: Service
 metadata:
   name: todoapi
 spec:
+  type: NodePort
   selector:
     app: todoapi
   ports:
