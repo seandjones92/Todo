@@ -1,0 +1,61 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: todoapi
+spec:
+  selector:
+    app: todoapi
+  ports:
+  - port: 3000
+    targetPort: 3000
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: todoapi
+spec:
+  selector:
+    matchLabels:
+      app: todoapi
+  template:
+    metadata:
+      labels:
+        app: todoapi
+    spec:
+      containers:
+      - name: todoapi
+        imagePullPolicy: Never
+        image: todoapi:1.0
+        resources:
+          limits:
+            memory: "128Mi"
+            cpu: "500m"
+        ports:
+        - containerPort: 3000
+        env:
+          - name: PSQL_DBNAME
+            valueFrom:
+              secretKeyRef:
+                name: todo-dev
+                key: dbname
+          - name: PSQL_USER
+            valueFrom:
+              secretKeyRef:
+                name: todo-dev
+                key: user
+          - name: PSQL_PASSWORD
+            valueFrom:
+              secretKeyRef:
+                name: todo-dev
+                key: password
+          - name: PSQL_HOST
+            valueFrom:
+              secretKeyRef:
+                name: todo-dev
+                key: host
+          - name: PSQL_PORT
+            valueFrom:
+              secretKeyRef:
+                name: todo-dev
+                key: port
+

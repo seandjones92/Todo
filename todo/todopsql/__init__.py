@@ -8,7 +8,7 @@ import psycopg2
 class connection(object):
     def __init__(self):
         self.dbname = str(os.getenv('PSQL_DBNAME'))
-        self.user = str(os.getenv('PSQL_DBNAME'))
+        self.user = str(os.getenv('PSQL_USER'))
         self.password = str(os.getenv('PSQL_PASSWORD'))
         self.host = str(os.getenv('PSQL_HOST'))
         self.port = str(os.getenv('PSQL_PORT'))
