@@ -26,13 +26,14 @@ class connection(object):
         conn.close()
         return mostrecent
     
-    def createtask(self):
+    def createtask(self, title, body):
         # Create connection and get cursor
         conn = psycopg2.connect(self.connstring)
         cur = conn.cursor()
         # Interact with DB
-        cur.execute("INSERT INTO todo (title, body, createdon, duedate) \
-                     VALUES (%s, %s, current_date, ")
+        cur.execute("INSERT INTO todo (title, body, createdon) VALUES ('%s', '%s', current_date);" % (title, body))
+                    #  d = datetime.datetime(year, month, day)
+                    #  d.date()
         # Close cursor and connection
         cur.close()
         conn.close()
