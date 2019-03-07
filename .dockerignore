@@ -11,5 +11,7 @@ docker-compose*
 README.md
 LICENSE
 .vscode
+database
 database/*
+kubernetes
 kubernetes/*
