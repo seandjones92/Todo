@@ -36,4 +36,5 @@ class connection(object):
                     #  d.date()
         # Close cursor and connection
         cur.close()
+        conn.commit()
         conn.close()
