@@ -1,0 +1,36 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: todopsql
+spec:
+  selector:
+    matchLabels:
+      app: todopsql
+  template:
+    metadata:
+      labels:
+        app: todopsql
+    spec:
+      containers:
+      - name: todopsql
+        image: todopsql:1.0
+        imagePullPolicy: Never
+        resources:
+          limits:
+            memory: "128Mi"
+            cpu: "500m"
+        ports:
+        - containerPort: 5432
+        env:
+          - name: POSTGRES_PASSWORD
+            valueFrom:
+              secretKeyRef:
+                name: todo-dev
+                key: password
+        volumeMounts:
+          - name: psql-persistent-storage
+            mountPath: /var/lib/postgres
+      volumes:
+        - name: psql-persistent-storage
+          persistentVolumeClaim:
+            claimName: psql-pv-claim
