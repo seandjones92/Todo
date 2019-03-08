@@ -31,8 +31,12 @@ class connection(object):
         conn = psycopg2.connect(self.connstring)
         cur = conn.cursor()
         # Interact with DB
-        cur.execute("INSERT INTO todo (title, body, createdon, duedate) VALUES ('%s', '%s', current_date, '%s');" 
-                    % (title, body, datetime.date(duedate['year'], duedate['month'], duedate['day'])))
+        if None not in (duedate['year'], duedate['month'], duedate['day']):
+            cur.execute("INSERT INTO todo (title, body, createdon, duedate) VALUES ('%s', '%s', current_date, '%s');" 
+                        % (title, body, datetime.date(duedate['year'], duedate['month'], duedate['day'])))
+        else:
+            cur.execute("INSERT INTO todo (title, body, createdon) VALUES ('%s', '%s', current_date);" 
+                        % (title, body))
         # Close cursor and connection
         cur.close()
         conn.commit()
