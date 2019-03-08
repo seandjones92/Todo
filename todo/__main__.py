@@ -19,10 +19,11 @@ def getall():
 def createtask():
     if (request.method == 'POST') and (request.is_json):
         content = request.get_json()
-        newtitle = content['title']
-        newbody = content['body']
+        title = content['title']
+        body = content['body']
+        duedate = content['duedate']
         tododb = todopsql.connection()
-        tododb.createtask(newtitle, newbody)
+        tododb.createtask(title, body, duedate)
         response = "Task created successfully"
         return response
 
@@ -34,6 +35,13 @@ def completetask():
         tododb = todopsql.connection()
         tododb.completetask(taskid)
         response = "Task completed"
+        return response
+
+@app.route("/echo", methods=["POST"])
+def echorequest():
+    if (request.method == 'POST') and (request.is_json):
+        content = request.get_json()
+        response = jsonify(content)
         return response
 
 if __name__ == "__main__":
