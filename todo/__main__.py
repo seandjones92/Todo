@@ -26,5 +26,15 @@ def createtask():
         response = "Task created successfully"
         return response
 
+@app.route("/completetask", methods=["POST"])
+def completetask():
+    if (request.method == 'POST') and (request.is_json):
+        content = request.get_json()
+        taskid = content['id']
+        tododb = todopsql.connection()
+        tododb.completetask(taskid)
+        response = "Task completed"
+        return response
+
 if __name__ == "__main__":
     app.run(host="0.0.0.0", port=3000)
