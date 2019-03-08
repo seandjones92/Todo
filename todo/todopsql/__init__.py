@@ -54,3 +54,14 @@ class connection(object):
         cur.close()
         conn.commit()
         conn.close()
+
+    def deletetask(self, taskid):
+        # Create connection and get cursor
+        conn = psycopg2.connect(self.connstring)
+        cur = conn.cursor()
+        # Interact with DB
+        cur.execute("DELETE FROM todo WHERE id = %s;" % (taskid))
+        # Close cursor and connection
+        cur.close()
+        conn.commit()
+        conn.close()

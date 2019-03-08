@@ -27,14 +27,24 @@ def createtask():
         response = "Task created successfully"
         return response
 
-@app.route("/completetask", methods=["POST"])
+@app.route("/completetask", methods=["PUT"])
 def completetask():
-    if (request.method == 'POST') and (request.is_json):
+    if (request.method == 'PUT') and (request.is_json):
         content = request.get_json()
         taskid = content['id']
         tododb = todopsql.connection()
         tododb.completetask(taskid)
         response = "Task completed"
+        return response
+
+@app.route("/deletetask", methods=["DELETE"])
+def deletetask():
+    if (request.method == 'DELETE') and (request.is_json):
+        content = request.get_json()
+        taskid = content['id']
+        tododb = todopsql.connection()
+        tododb.deletetask(taskid)
+        response = "Task deleted"
         return response
 
 @app.route("/echo", methods=["POST"])
