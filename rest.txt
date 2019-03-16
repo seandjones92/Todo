@@ -1,0 +1,40 @@
+# -*- restclient -*-
+#
+# This file can be used with Emacs "restclient.el"
+
+# Setup variables here
+# Get the service url with "minikube service --url todoapi"
+:apiendpoint = http://192.168.39.82:32583
+
+# Get all tasks
+GET :apiendpoint/getall
+
+# Create a new task
+POST :apiendpoint/createtask
+Content-Type: application/json
+
+{
+	"title": "This is a task",
+	"body": "This is a longer string of text that would be considered the body of the",
+	"duedate": {
+		"year": null,
+		"month": null,
+		"day": null
+	}
+}
+
+# Mark a task as completed
+PUT :apiendpoint/completetask
+Content-Type: application/json
+
+{
+	"id": 1
+}
+
+# Delete a task
+DELETE :apiendpoint/deletetask
+Content-Type: application/json
+
+{
+	"id": 1
+}
