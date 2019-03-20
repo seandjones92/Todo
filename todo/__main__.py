@@ -5,15 +5,18 @@ import todopsql
 
 app = Flask(__name__)
 
+
 @app.route("/", methods=['GET'])
 def hello():
-    return "Hello World!" # This page should serv as API documentation
+    return "Hello World!"  # This page should serv as API documentation
+
 
 @app.route("/getall", methods=['GET'])
 def getall():
     tododb = todopsql.connection()
     response = jsonify(tododb.getall())
     return response
+
 
 @app.route("/createtask", methods=["POST"])
 def createtask():
@@ -27,6 +30,7 @@ def createtask():
         response = "Task created successfully"
         return response
 
+
 @app.route("/completetask", methods=["PUT"])
 def completetask():
     if (request.method == 'PUT') and (request.is_json):
@@ -36,6 +40,7 @@ def completetask():
         tododb.completetask(taskid)
         response = "Task completed"
         return response
+
 
 @app.route("/deletetask", methods=["DELETE"])
 def deletetask():
@@ -47,12 +52,14 @@ def deletetask():
         response = "Task deleted"
         return response
 
+
 @app.route("/echo", methods=["POST"])
 def echorequest():
     if (request.method == 'POST') and (request.is_json):
         content = request.get_json()
         response = jsonify(content)
         return response
+
 
 if __name__ == "__main__":
     app.run(host="0.0.0.0", port=3000)
