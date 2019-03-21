@@ -4,7 +4,7 @@
 
 # Setup variables here
 # Get the service url with "minikube service --url todoapi"
-:apiendpoint = http://192.168.39.82:30613
+:apiendpoint =
 
 
 # Get all tasks
@@ -37,5 +37,5 @@ DELETE :apiendpoint/deletetask
 Content-Type: application/json
 
 {
-	"id": 2
+	"id": 1
 }
