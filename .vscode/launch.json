@@ -10,7 +10,7 @@
             "request": "launch",
             "module": "flask",
             "env": {
-                "FLASK_APP": "webui/todoui",
+                "FLASK_APP": "todoui",
                 "FLASK_ENV": "development",
                 "FLASK_DEBUG": "1"
             },
