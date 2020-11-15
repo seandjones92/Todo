@@ -15,10 +15,24 @@
                 "FLASK_DEBUG": "1"
             },
             "args": [
-                "run",
-                // "--no-debugger"
+                "run"
             ],
             "jinja": true
+        },
+        {
+            "name": "Docker: Python - Flask",
+            "type": "docker",
+            "request": "launch",
+            "preLaunchTask": "docker-run: debug",
+            "python": {
+                "pathMappings": [
+                    {
+                        "localRoot": "${workspaceFolder}",
+                        "remoteRoot": "/app"
+                    }
+                ],
+                "projectType": "flask"
+            }
         }
     ]
 }
